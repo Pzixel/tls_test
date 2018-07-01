@@ -6,12 +6,13 @@ extern crate tokio;
 use futures::{Future, Stream};
 use hyper::{Body, Client};
 use hyper_tls::HttpsConnector;
+use tokio::runtime::current_thread::Runtime;
 use std::io::Write;
 
 fn main() {
-    let https = HttpsConnector::new(2).unwrap();
+    let https = HttpsConnector::new(1).unwrap();
     let client: Client<_, Body> = Client::builder().build(https);
-    let mut runtime = tokio::executor::current_thread::CurrentThread::new();
+    let mut runtime = Runtime::new().unwrap();
     let future = client
         .get("https://bash.im/".parse().unwrap())
         .and_then(|res| {
