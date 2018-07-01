@@ -1,0 +1,10 @@
+[package]
+name = "tls_test"
+version = "0.1.0"
+authors = ["Psilon <pzixel@gmail.com>"]
+
+[dependencies]
+futures = "0.1.21"
+hyper = "0.12.3"
+hyper-tls = "0.3.0"
+tokio = "0.1.7"
